@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Limelight&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  background-color: #f9f9f9;
+  @apply text-white;
+}
+
+#mobile-question {
+  text-shadow: -2px -1px 1px rgba(0, 0, 0, 9);
+}
+
+#yes-no {
+  text-shadow: -2px -1px 1px rgba(0, 0, 0, 9);
+}
