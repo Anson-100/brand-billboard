@@ -88,14 +88,14 @@ const Landing = () => {
                   <p className="font-semibold text-[12rem] sm:text-[20rem] text-green-600">
                     ✓
                   </p>
-                  <p className="font-helvetica text-2xl text-semibold bg-black">
+                  <p className="font-helvetica text-2xl text-semibold bg-black text-center">
                     Be like John Wick; he does whatever it takes to stay
                     hydrated.
                   </p>
                 </div>
               )}
               {showNo && (
-                <div className="absolute inset-0 flex flex-col justify-center items-center">
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
                   <p className="text-[8rem] sm:text-[20rem] text-red-600">✘</p>
                   <p className="font-helvetica text-2xl text-semibold bg-black">
                     Don't be like John Wick's enemies; their constant boozing
@@ -178,7 +178,7 @@ const Landing = () => {
                                       )
                                     }, 3000)
                                   }}
-                                  className="text-[3rem] font-semibold hover:text-green-600 transition duration-[2000ms]"
+                                  className="text-[3rem] font-semibold"
                                 >
                                   ✓
                                 </a>
@@ -201,7 +201,7 @@ const Landing = () => {
                                       )
                                     }, 3000)
                                   }}
-                                  className="text-[3rem] hover:text-red-600 transition duration-[2000ms]"
+                                  className="text-[3rem]"
                                 >
                                   ✘
                                 </a>
