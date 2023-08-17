@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import useMediaQuery from "../hooks/useMediaQuery"
 import { motion } from "framer-motion"
 import AnchorLink from "react-anchor-link-smooth-scroll"
@@ -12,26 +12,59 @@ const Landing = () => {
   const [showNo, setShowNo] = useState(false)
   const [isGrayscale, setIsGrayscale] = useState(false)
   const [isBright, setIsBright] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
   const toggleYes = () => {
     if (showYes) return
+    if (showNo) {
+      setShowNo(false)
+      setIsGrayscale(false)
+    }
 
     setShowYes(true)
     setIsBright(true)
 
-    setTimeout(() => setShowYes(false), 3000)
-    setTimeout(() => setIsBright(false), 3000)
+    setTimeout(() => setIsVisible(true), 100)
+
+    setTimeout(() => setShowYes(false), 5000)
+    setTimeout(() => setIsBright(false), 5000)
+    setTimeout(() => setIsVisible(false), 5000)
   }
 
   const toggleNo = () => {
     if (showNo) return
+    if (showYes) {
+      setShowYes(false)
+      setIsBright(false)
+    }
 
     setShowNo(true)
     setIsGrayscale(true)
 
-    setTimeout(() => setShowNo(false), 4000)
-    setTimeout(() => setIsGrayscale(false), 4000)
+    setTimeout(() => setIsVisible(true), 100)
+
+    setTimeout(() => setShowNo(false), 5000)
+    setTimeout(() => setIsGrayscale(false), 5000)
+    setTimeout(() => setIsVisible(false), 5000)
   }
+
+  // COUNTDOWN LOGIC
+  const [countdown, setCountdown] = useState(5)
+
+  useEffect(() => {
+    let timer
+    if (showYes || showNo) {
+      timer = setInterval(() => {
+        setCountdown(prevCountdown =>
+          prevCountdown > 0 ? prevCountdown - 1 : 0
+        )
+      }, 1000)
+    } else {
+      setCountdown(5)
+    }
+
+    return () => clearInterval(timer)
+  }, [showYes, showNo])
 
   return (
     <div>
@@ -59,7 +92,7 @@ const Landing = () => {
                                     "https://www.youtube.com/watch?v=KcUX8oUyg70&t=77",
                                     "_blank"
                                   )
-                                }, 3000)
+                                }, 4500)
                               }}
                               className="font-semibold lg:text-[5rem] text-cream hidden lg:block transition-colors duration-300 hover:text-green-600"
                             >
@@ -84,23 +117,53 @@ const Landing = () => {
                 />
               </div>
               {showYes && (
-                <div className="absolute inset-0 flex flex-col justify-center items-center">
-                  <p className="font-semibold text-[12rem] sm:text-[20rem] text-green-600">
+                <div
+                  className={`absolute inset-0 flex flex-col justify-center items-center`}
+                >
+                  <p
+                    className={`font-semibold text-[12rem] sm:text-[20rem] text-green-600 transition duration-300 ${
+                      isVisible ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
                     ✓
                   </p>
-                  <p className="font-helvetica text-2xl text-semibold bg-black text-center">
-                    Be like John Wick; he does whatever it takes to stay
-                    hydrated.
-                  </p>
+                  <div
+                    className={`font-helvetica text-2xl text-semibold bg-white text-black border-4 border-gold text-center
+                    transform transition-transform duration-500 ease-in-out ${
+                      isVisible ? "scale-100" : "scale-0"
+                    }`}
+                  >
+                    <p>
+                      Be like John Wick; he does whatever it takes to stay
+                      hydrated.
+                    </p>
+                    <p>{countdown}</p>
+                  </div>
                 </div>
               )}
               {showNo && (
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
-                  <p className="text-[8rem] sm:text-[20rem] text-red-600">✘</p>
-                  <p className="font-helvetica text-2xl text-semibold bg-black">
-                    Don't be like John Wick's enemies; their constant boozing
-                    leaves them dehydrated and weak.
+                <div
+                  className={`absolute inset-0 flex flex-col justify-center items-center text-center`}
+                >
+                  <p
+                    className={`text-[12rem] sm:text-[20rem] text-red-600 transition duration-300 ${
+                      isVisible ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    ✘
                   </p>
+                  <div
+                    className={`font-helvetica text-2xl text-semibold bg-white text-black border-4 border-gold
+                    transition-transform duration-300 ease-in-out transform ${
+                      isVisible ? "scale-100" : "scale-0"
+                    }`}
+                  >
+                    <p>
+                      Don't be like John Wick's enemies; their constant boozing
+                      leaves them dehydrated and weak.
+                    </p>
+                    <p>{countdown}</p>
+                  </div>
                 </div>
               )}
             </div>
@@ -125,7 +188,7 @@ const Landing = () => {
                                     "https://www.youtube.com/watch?v=xAZO4RXRnb8",
                                     "_blank"
                                   )
-                                }, 4000)
+                                }, 4500)
                               }}
                               className="lg:text-[5rem] text-cream hidden lg:block transition-colors duration-300 hover:text-red-600"
                             >
@@ -176,11 +239,11 @@ const Landing = () => {
                                         "https://www.youtube.com/watch?v=KcUX8oUyg70&t=77",
                                         "_blank"
                                       )
-                                    }, 3000)
+                                    }, 4500)
                                   }}
-                                  className="text-[3rem] font-semibold"
+                                  className="text-[3rem] font-semibold text-green-600"
                                 >
-                                  ✓
+                                  <p>✓</p>
                                 </a>
                                 <p
                                   id="mobile-question"
@@ -199,11 +262,11 @@ const Landing = () => {
                                         "https://www.youtube.com/watch?v=xAZO4RXRnb8",
                                         "_blank"
                                       )
-                                    }, 3000)
+                                    }, 4500)
                                   }}
-                                  className="text-[3rem]"
+                                  className="text-[3rem] text-red-600"
                                 >
-                                  ✘
+                                  <p>✘</p>
                                 </a>
                                 <button />
                               </div>
@@ -220,7 +283,7 @@ const Landing = () => {
                 <p className="font-retro text-[6.7rem] xxs:text-[7.5rem] xl:text-[7rem] lg:text-[6.3rem] md:text-[5.7rem] sm:text-[4.5rem] text-cream sm:ml-4 lg:ml-0">
                   STAY
                 </p>
-                <p className="font-retro xl:text-[7rem] lg:text-[6.3rem] md:text-[5.7rem] text-[3.2rem] xxs:text-[3.33rem] sm:text-[4.5rem] text-blue sm:ml-3">
+                <p className="font-retro xl:text-[7rem] lg:text-[6.3rem] md:text-[5.7rem] text-[3.1rem] xxs:text-[3.33rem] sm:text-[4.5rem] text-blue sm:ml-3">
                   HYDRATED
                 </p>
               </div>
