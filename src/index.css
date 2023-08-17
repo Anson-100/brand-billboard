@@ -21,7 +21,7 @@ body,
 }
 
 #yes-no {
-  text-shadow: -2px -1px 1px rgba(0, 0, 0, 9);
+  text-shadow: -3px 3px 3px white;
 }
 
 a:active {
