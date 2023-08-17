@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/brand-billboard/static/css/main.73ad3e5f.css",
+    "main.css": "/brand-billboard/static/css/main.427669ee.css",
     "main.js": "/brand-billboard/static/js/main.3962e083.js",
     "static/media/wick hydrate.jpg": "/brand-billboard/static/media/wick hydrate.429ae6decba0e6b4df9f.jpg",
     "index.html": "/brand-billboard/index.html",
-    "main.73ad3e5f.css.map": "/brand-billboard/static/css/main.73ad3e5f.css.map",
+    "main.427669ee.css.map": "/brand-billboard/static/css/main.427669ee.css.map",
     "main.3962e083.js.map": "/brand-billboard/static/js/main.3962e083.js.map"
   },
   "entrypoints": [
-    "static/css/main.73ad3e5f.css",
+    "static/css/main.427669ee.css",
     "static/js/main.3962e083.js"
   ]
 }
