@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
-import useMediaQuery from "../hooks/useMediaQuery"
-import { motion } from "framer-motion"
-import AnchorLink from "react-anchor-link-smooth-scroll"
+import thumbUp from "../assets/thumb up.svg"
+import thumbDown from "../assets/thumb down.svg"
 
 import JohnWickHydrate from "../assets/wick hydrate.jpg"
 
@@ -24,7 +23,7 @@ const Landing = () => {
     setShowYes(true)
     setIsBright(true)
 
-    setTimeout(() => setIsVisible(true), 100)
+    setTimeout(() => setIsVisible(true), 10)
 
     setTimeout(() => setShowYes(false), 5000)
     setTimeout(() => setIsBright(false), 5000)
@@ -41,7 +40,7 @@ const Landing = () => {
     setShowNo(true)
     setIsGrayscale(true)
 
-    setTimeout(() => setIsVisible(true), 100)
+    setTimeout(() => setIsVisible(true), 10)
 
     setTimeout(() => setShowNo(false), 5000)
     setTimeout(() => setIsGrayscale(false), 5000)
@@ -121,23 +120,23 @@ const Landing = () => {
                   className={`absolute inset-0 flex flex-col justify-center items-center`}
                 >
                   <p
-                    className={`font-semibold text-[12rem] sm:text-[20rem] text-green-600 transition duration-300 ${
+                    id="passFail"
+                    className={`font-semibold text-[10rem] md:text-[16rem] text-green-600 transition duration-300 ${
                       isVisible ? "opacity-100" : "opacity-0"
                     }`}
                   >
                     ✓
                   </p>
                   <div
-                    className={`font-helvetica text-2xl text-semibold bg-white text-black border-4 border-gold text-center
+                    id="caption"
+                    className={`font-helvetica text-2xl text-semibold bg-white text-black text-center rounded-xl w-11/12
                     transform transition-transform duration-500 ease-in-out ${
                       isVisible ? "scale-100" : "scale-0"
                     }`}
                   >
-                    <p>
-                      Be like John Wick; he does whatever it takes to stay
-                      hydrated.
-                    </p>
-                    <p>{countdown}</p>
+                    <p>Be like John Wick.</p>
+                    <p>He does whatever it takes to stay hydrated.</p>
+                    <p className="text-cadmium">{countdown}</p>
                   </div>
                 </div>
               )}
@@ -146,23 +145,25 @@ const Landing = () => {
                   className={`absolute inset-0 flex flex-col justify-center items-center text-center`}
                 >
                   <p
-                    className={`text-[12rem] sm:text-[20rem] text-red-600 transition duration-300 ${
+                    id="passFail"
+                    className={`text-[10rem] md:text-[16rem]  text-red-600 transition duration-300 ${
                       isVisible ? "opacity-100" : "opacity-0"
                     }`}
                   >
                     ✘
                   </p>
                   <div
-                    className={`font-helvetica text-2xl text-semibold bg-white text-black border-4 border-gold
+                    id="caption"
+                    className={`font-helvetica text-2xl text-semibold bg-white text-black rounded-xl w-11/12
                     transition-transform duration-300 ease-in-out transform ${
                       isVisible ? "scale-100" : "scale-0"
                     }`}
                   >
+                    <p>Don't be like John Wick's enemies.</p>
                     <p>
-                      Don't be like John Wick's enemies; their constant boozing
-                      leaves them dehydrated and weak.
+                      Their constant boozing leaves them dehydrated and weak.
                     </p>
-                    <p>{countdown}</p>
+                    <p className="text-cadmium">{countdown}</p>
                   </div>
                 </div>
               )}
@@ -219,57 +220,49 @@ const Landing = () => {
                   is the clarity your body needs.
                 </p>
               </div>
-              <div className="flex bg-black  justify-center items-center basis-4/5 lg:basis-0">
-                <div className="flex justify-center items-center bg-black basis-full h-11/12 rounded-2xl">
-                  <div className="flex rounded-[13rem] justify-center items-center bg-deeper-blue basis-11/12 h-10/12">
-                    <div className="flex rounded-[10rem] justify-center items-center bg-burgundy basis-11/12 h-10/12">
-                      <div className="flex rounded-[10rem] justify-center items-center bg-cadmium basis-11/12 h-10/12">
-                        <div className="flex rounded-[10rem] justify-center items-center bg-orange basis-11/12 h-10/12">
-                          <div className="flex rounded-[5rem] sm:rounded-[7rem] justify-center items-center bg-yellow basis-11/12 h-10/12">
-                            <div className="flex rounded-[2.5rem] sm:rounded-[6rem] justify-center items-center  bg-black basis-11/12 h-10/12 text-center">
-                              <div className="lg:hidden flex justify-center items-center">
-                                <a
-                                  id="yes-no"
-                                  href="https://www.youtube.com/watch?v=KcUX8oUyg70"
-                                  onClick={event => {
-                                    event.preventDefault()
-                                    toggleYes()
-                                    setTimeout(() => {
-                                      window.open(
-                                        "https://www.youtube.com/watch?v=KcUX8oUyg70&t=77",
-                                        "_blank"
-                                      )
-                                    }, 4500)
-                                  }}
-                                  className="text-[3rem] font-semibold text-green-600"
-                                >
-                                  <p>✓</p>
-                                </a>
-                                <p
-                                  id="mobile-question"
-                                  className="font-goodvibes font-semibold text-[1.5rem]  text-white"
-                                >
-                                  Did you drink enough water today?
-                                </p>
-                                <a
-                                  id="yes-no"
-                                  href="https://www.youtube.com/watch?v=xAZO4RXRnb8"
-                                  onClick={event => {
-                                    event.preventDefault()
-                                    toggleNo()
-                                    setTimeout(() => {
-                                      window.open(
-                                        "https://www.youtube.com/watch?v=xAZO4RXRnb8",
-                                        "_blank"
-                                      )
-                                    }, 4500)
-                                  }}
-                                  className="text-[3rem] text-red-600"
-                                >
-                                  <p>✘</p>
-                                </a>
-                                <button />
-                              </div>
+              <div className="lg:hidden flex flex-col justify-center items-center flex-grow">
+                <div className="flex justify-center items-center h-2/6 bg-black w-4/6 flex-grow">
+                  <div className="flex rounded-[13rem] justify-center items-center basis-11/12 h-11/12 bg-deeper-blue">
+                    <div className="flex rounded-[10rem] justify-center items-center basis-11/12 h-11/12 bg-burgundy ">
+                      <div className="flex rounded-[10rem] justify-center items-center basis-11/12 h-11/12 bg-cadmium ">
+                        <div className="flex rounded-[10rem] justify-center items-center basis-11/12 h-11/12 bg-orange ">
+                          <div className="flex rounded-[5rem] sm:rounded-[4rem] justify-center items-center basis-11/12 h-11/12 bg-yellow ">
+                            <div className="flex rounded-[7rem] sm:rounded-[6rem] justify-center items-center h-11/12 basis-11/12 bg-black  text-center">
+                              <a
+                                id="yes-no"
+                                href="https://www.youtube.com/watch?v=KcUX8oUyg70"
+                                onClick={event => {
+                                  event.preventDefault()
+                                  toggleYes()
+                                  setTimeout(() => {
+                                    window.open(
+                                      "https://www.youtube.com/watch?v=KcUX8oUyg70&t=77",
+                                      "_blank"
+                                    )
+                                  }, 4500)
+                                }}
+                                className="text-[3rem] font-semibold text-green-600 p-2"
+                              >
+                                <img src={thumbUp} alt="thumbs up" />
+                              </a>
+
+                              <a
+                                id="yes-no"
+                                href="https://www.youtube.com/watch?v=xAZO4RXRnb8"
+                                onClick={event => {
+                                  event.preventDefault()
+                                  toggleNo()
+                                  setTimeout(() => {
+                                    window.open(
+                                      "https://www.youtube.com/watch?v=xAZO4RXRnb8",
+                                      "_blank"
+                                    )
+                                  }, 4500)
+                                }}
+                                className="text-[3rem] text-red-600 p-2"
+                              >
+                                <img src={thumbDown} alt="thumbs down" />
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -277,9 +270,18 @@ const Landing = () => {
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="sm:flex sm:flex-row flex-grow flex-col text-center justify-center items-center  bg-black rounded-b-2xl lg:rounded-none">
+                <div className="text-yellow text-[4.5rem] font-semibold">⭡</div>
+                <div className="flex justify-center items-center flex-col">
+                  <p
+                    id="mobile-question"
+                    className="font-goodvibes font-semibold text-[1.5rem] text-center text-yellow"
+                  >
+                    Did you drink enough water today?
+                  </p>
+                </div>
+              </div>
+              <div className="sm:flex sm:flex-row flex-col text-center justify-center items-center bg-black rounded-b-2xl lg:rounded-none">
                 <p className="font-retro text-[6.7rem] xxs:text-[7.5rem] xl:text-[7rem] lg:text-[6.3rem] md:text-[5.7rem] sm:text-[4.5rem] text-cream sm:ml-4 lg:ml-0">
                   STAY
                 </p>
